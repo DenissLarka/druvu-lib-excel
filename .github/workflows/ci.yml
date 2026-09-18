@@ -1,0 +1,29 @@
+# Builds and verifies on every push to main and on every pull request.
+# This is the gate that catches breakage (e.g. Renovate dependency bumps) before it lands on
+# main — without a status check, Renovate's auto-merge PRs sit open indefinitely and a red
+# build stays invisible.
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v6
+        with:
+          java-version: '25'
+          distribution: 'zulu'
+          cache: 'maven'
+
+      - name: Build and verify
+        run: mvn -B verify
