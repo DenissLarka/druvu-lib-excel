@@ -15,6 +15,11 @@ import java.util.regex.Pattern;
  * dates read as dates - and a style that names no number format keeps that behaviour, so
  * {@code Style.NONE.withFill(Fill.RED)} on a date column is still a date.
  *
+ * <p>A cell holds text, a number, a boolean, a date or nothing: a value function may answer a {@code String}, an enum,
+ * a {@code Boolean}, a whole number, a {@code BigDecimal}, a {@code double}, a {@code LocalDate} or a
+ * {@code LocalDateTime}; {@code null} or an empty {@code Optional} leaves the cell empty, and a filled {@code Optional}
+ * is shown as what it holds. Anything else is refused, by column name, rather than guessed at.
+ *
  * @param <T> what one row is made from
  */
 public final class Sheet<T> {

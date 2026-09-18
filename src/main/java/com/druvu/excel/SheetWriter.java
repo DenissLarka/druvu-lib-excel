@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import org.dhatim.fastexcel.Worksheet;
 
 /**
@@ -82,7 +83,7 @@ final class SheetWriter<T> {
 
     private void cell(int r, int c, T row) {
         Column<T> column = columns.get(c);
-        Object value = column.value().apply(row);
+        Object value = unwrapped(column.value().apply(row));
         Style style = column.style().apply(row);
         if (style == null) {
             throw new IllegalArgumentException("column '" + column.header() + "' chose no style - use Style.NONE");
@@ -93,6 +94,11 @@ final class SheetWriter<T> {
         if (r <= BATCH) {
             widths[c] = Math.max(widths[c], CellWidth.of(value, shown.format()));
         }
+    }
+
+    /** An {@link Optional} is a value that may be missing - which a sheet already has a word for: an empty cell. */
+    private static Object unwrapped(Object value) {
+        return value instanceof Optional<?> maybe ? maybe.orElse(null) : value;
     }
 
     /**

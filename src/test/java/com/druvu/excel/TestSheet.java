@@ -11,6 +11,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
@@ -141,6 +142,25 @@ public class TestSheet {
             var empty = Reread.cell(reread, 1, 1);
             assertThat(empty == null || empty.getCellType() == CellType.BLANK).isTrue();
             assertThat(Reread.cell(reread, 2, 1).getStringCellValue()).isEqualTo("thanks");
+        }
+    }
+
+    @Test
+    public void anOptionalIsShownAsWhatItHoldsOrLeftEmpty() throws IOException {
+        var sheet = invoices()
+                .column("Customer", Invoice::customer)
+                .column(
+                        "Paid on",
+                        invoice -> invoice.status() == Invoice.Status.PAID
+                                ? Optional.of(invoice.due())
+                                : Optional.empty());
+
+        try (var reread = Reread.of(sheet)) {
+            var empty = Reread.cell(reread, 1, 1);
+            assertThat(empty == null || empty.getCellType() == CellType.BLANK).isTrue();
+            var paid = Reread.cell(reread, 2, 1);
+            assertThat(paid.getLocalDateTimeCellValue().toLocalDate()).isEqualTo(LocalDate.of(2026, 9, 1));
+            assertThat(paid.getCellStyle().getDataFormatString()).isEqualTo("yyyy-mm-dd");
         }
     }
 
