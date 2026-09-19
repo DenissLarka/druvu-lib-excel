@@ -22,6 +22,9 @@ import java.util.Objects;
  *
  * <p>Nothing is written until {@link #save} or {@link #writeTo}. Rows are then streamed: they leave memory a batch at a
  * time, so a sheet can be far larger than the heap.
+ *
+ * @author Deniss Larka <br>
+ *     on 18 Sep 2026
  */
 public final class Workbook {
 

@@ -6,6 +6,9 @@ import java.math.BigDecimal;
  * Refuses the numbers Excel cannot hold. Excel keeps 15 significant digits and silently drops the rest, so a longer
  * number would open as a different number than the one written - in a money column, a wrong amount nobody was told
  * about. The caller decides what to give up: round in the column's value function, or write the digits as text.
+ *
+ * @author Deniss Larka <br>
+ *     on 18 Sep 2026
  */
 final class ExcelNumbers {
 

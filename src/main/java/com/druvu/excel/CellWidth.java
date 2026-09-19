@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 /**
  * Estimates how many characters a cell shows, so columns can be sized without Excel's own measuring. An estimate on
  * purpose: it leans wide, because a slightly roomy column is fine and a column of {@code ####} is not.
+ *
+ * @author Deniss Larka <br>
+ *     on 18 Sep 2026
  */
 final class CellWidth {
 

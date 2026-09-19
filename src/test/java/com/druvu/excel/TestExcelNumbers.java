@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.math.BigDecimal;
 import org.testng.annotations.Test;
 
+/** Excel keeps fifteen significant digits: a number that fits passes, one it would round silently is refused. */
 public class TestExcelNumbers {
 
     @Test

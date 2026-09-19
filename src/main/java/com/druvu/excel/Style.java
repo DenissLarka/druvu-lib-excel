@@ -13,6 +13,8 @@ import java.util.Objects;
  * @param fill the cell background
  * @param align the horizontal alignment
  * @param bold whether the text is bold
+ * @author Deniss Larka <br>
+ *     on 18 Sep 2026
  */
 public record Style(String format, Fill fill, Align align, boolean bold) {
 

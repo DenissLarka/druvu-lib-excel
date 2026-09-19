@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.testng.annotations.Test;
 
+/** Styles as values: refining, equality, refusals. */
 public class TestStyle {
 
     @Test

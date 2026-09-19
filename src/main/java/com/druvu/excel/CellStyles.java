@@ -9,6 +9,9 @@ import org.dhatim.fastexcel.StyleSetter;
  * <p>An xlsx holds about 64,000 cell styles at most, and a style chosen per row by a function would reach that cap if
  * every row stored its own. The engine stores styles by value, so a file holds only as many as there are different
  * looks - which is why {@link Style} is a value. {@code TestCellStyles} holds the engine to that.
+ *
+ * @author Deniss Larka <br>
+ *     on 18 Sep 2026
  */
 final class CellStyles {
 
@@ -21,7 +24,7 @@ final class CellStyles {
         if (!Style.GENERAL.equals(style.format())) {
             cell.format(style.format());
         }
-        if (style.fill() != Fill.NONE) {
+        if (!Fill.NONE.equals(style.fill())) {
             cell.fillColor(style.fill().hex());
         }
         if (style.align() != Align.AUTO) {

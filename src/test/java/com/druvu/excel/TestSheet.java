@@ -17,6 +17,7 @@ import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.testng.annotations.Test;
 
+/** A sheet declared column by column: what reaches the file, and what is refused before anything is written. */
 public class TestSheet {
 
     private static Sheet<Invoice> invoices() {

@@ -14,6 +14,9 @@ import org.dhatim.fastexcel.Worksheet;
  * <p>The look every sheet gets without asking: a bold header that stays in view, a filter on every column, and columns
  * wide enough for what they hold. Widths must reach the file before the first row does, so they are measured on the
  * first {@value #BATCH} rows; from there on rows leave memory a batch at a time, and a sheet can be any length.
+ *
+ * @author Deniss Larka <br>
+ *     on 18 Sep 2026
  */
 final class SheetWriter<T> {
 

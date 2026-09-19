@@ -14,6 +14,9 @@ import java.util.stream.Stream;
  * }</pre>
  *
  * <p>Several sheets go through {@link #workbook()}.
+ *
+ * @author Deniss Larka <br>
+ *     on 18 Sep 2026
  */
 public final class Excel {
 

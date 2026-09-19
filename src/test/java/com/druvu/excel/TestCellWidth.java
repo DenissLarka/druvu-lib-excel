@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import org.testng.annotations.Test;
 
+/** How wide a column must be for what it holds. */
 public class TestCellWidth {
 
     @Test

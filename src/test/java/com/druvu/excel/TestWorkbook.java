@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 import org.testng.annotations.Test;
 
+/** Several sheets in one file: their order, their names, and the empty workbook. */
 public class TestWorkbook {
 
     @Test

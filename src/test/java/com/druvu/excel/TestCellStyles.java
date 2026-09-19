@@ -33,18 +33,28 @@ public class TestCellStyles {
 
     @Test
     public void everyFillOfThePaletteReachesTheFileAsItsOwnColour() throws IOException {
-        Fill[] palette = Fill.values();
+        Fill[] palette = {Fill.NONE, Fill.GREEN, Fill.RED, Fill.YELLOW, Fill.ORANGE, Fill.BLUE, Fill.LAVENDER, Fill.GREY
+        };
 
         try (var reread = reread(write(palette.length, row -> Style.NONE.withFill(palette[row])))) {
-            for (Fill fill : palette) {
-                XSSFCellStyle cellStyle = styleOfRow(reread, fill.ordinal());
-                if (fill == Fill.NONE) {
+            for (int row = 0; row < palette.length; row++) {
+                XSSFCellStyle cellStyle = styleOfRow(reread, row);
+                if (palette[row].equals(Fill.NONE)) {
                     assertThat(cellStyle.getFillPattern()).isEqualTo(FillPatternType.NO_FILL);
                 } else {
                     assertThat(cellStyle.getFillForegroundColorColor().getARGBHex())
-                            .endsWith(fill.hex());
+                            .endsWith(palette[row].hex());
                 }
             }
+        }
+    }
+
+    @Test
+    public void aColourOfYourOwnReachesTheFileDarkOnesIncluded() throws IOException {
+        try (var reread = reread(write(1, row -> Style.NONE.withFill(Fill.of("#1f3864"))))) {
+            XSSFCellStyle cellStyle = styleOfRow(reread, 0);
+            assertThat(cellStyle.getFillPattern()).isEqualTo(FillPatternType.SOLID_FOREGROUND);
+            assertThat(cellStyle.getFillForegroundColorColor().getARGBHex()).endsWith("1F3864");
         }
     }
 

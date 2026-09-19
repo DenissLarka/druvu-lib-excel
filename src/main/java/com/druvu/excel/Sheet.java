@@ -21,6 +21,8 @@ import java.util.regex.Pattern;
  * is shown as what it holds. Anything else is refused, by column name, rather than guessed at.
  *
  * @param <T> what one row is made from
+ * @author Deniss Larka <br>
+ *     on 18 Sep 2026
  */
 public final class Sheet<T> {
 
