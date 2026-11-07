@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.druvu</groupId>
+		<artifactId>druvu-lib-excel</artifactId>
+		<version>1.1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>druvu-lib-excel-reader</artifactId>
+	<packaging>jar</packaging>
+
+	<name>druvu-lib-excel-reader</name>
+	<description>Excel files into plain Java: rows by header, typed values, no guessing</description>
+
+	<dependencies>
+		<!-- EXCEL: the reading engine - a real module, as is its whole tree. The public API never exposes a
+		     fastexcel type. -->
+		<dependency>
+			<groupId>org.dhatim</groupId>
+			<artifactId>fastexcel-reader</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>
