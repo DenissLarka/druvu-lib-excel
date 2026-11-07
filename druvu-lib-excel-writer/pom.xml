@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.druvu</groupId>
 		<artifactId>druvu-lib-excel</artifactId>
-		<version>1.1.0-SNAPSHOT</version>
+		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>druvu-lib-excel-writer</artifactId>
@@ -14,6 +14,13 @@
 
 	<name>druvu-lib-excel-writer</name>
 	<description>Excel reports from plain Java: every column of a sheet declared in one place</description>
+
+	<properties>
+		<!-- Test-only: the independent reader -->
+		<poi.version>6.0.0</poi.version>
+		<commons-io.version>2.22.0</commons-io.version>
+		<commons-codec.version>1.23.0</commons-codec.version>
+	</properties>
 
 	<dependencies>
 		<!-- EXCEL: the one runtime dependency - small, streaming, a real module. The public API never
@@ -23,20 +30,37 @@
 			<artifactId>fastexcel</artifactId>
 		</dependency>
 
-		<!-- TEST: POI reads every written file back (versions and exclusions in the parent) -->
+		<!-- TEST -->
+		<!-- POI is the independent reader: every test reads the written file back with it, so the library is never
+		     verified by the code that produced the file. POI's own tree disagrees with itself on commons-io and
+		     commons-codec, which fails dependencyConvergence, so the two are excluded from the POI subtree and owned
+		     below, one version each. Own only what diverges - re-measure on every POI bump. -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-io</groupId>
+					<artifactId>commons-io</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-codec</groupId>
+					<artifactId>commons-codec</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
+			<version>${commons-codec.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

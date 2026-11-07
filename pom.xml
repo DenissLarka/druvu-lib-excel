@@ -8,7 +8,7 @@
 
 	<groupId>com.druvu</groupId>
 	<artifactId>druvu-lib-excel</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>2.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>druvu-lib-excel</name>
@@ -50,10 +50,7 @@
 		<!-- Dependency versions. fastexcel and fastexcel-reader are released together, under one version. -->
 		<fastexcel.version>0.20.2</fastexcel.version>
 
-		<!-- Test-only: the independent reader -->
-		<poi.version>6.0.0</poi.version>
-		<commons-io.version>2.22.0</commons-io.version>
-		<commons-codec.version>1.23.0</commons-codec.version>
+		<!-- Test-only -->
 		<testng.version>7.12.0</testng.version>
 		<assertj.version>3.27.7</assertj.version>
 
@@ -91,35 +88,6 @@
 			</dependency>
 
 			<!-- TEST -->
-			<!-- POI is the independent reader: tests check a file with it, so the library is never verified by its
-			     own code alone. POI's own tree disagrees with itself on commons-io and commons-codec, which fails
-			     dependencyConvergence, so the two are excluded from the POI subtree and owned below, one version
-			     each. Own only what diverges - re-measure on every POI bump. -->
-			<dependency>
-				<groupId>org.apache.poi</groupId>
-				<artifactId>poi-ooxml</artifactId>
-				<version>${poi.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>commons-io</groupId>
-						<artifactId>commons-io</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>commons-codec</groupId>
-						<artifactId>commons-codec</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>commons-io</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>${commons-io.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-codec</groupId>
-				<artifactId>commons-codec</artifactId>
-				<version>${commons-codec.version}</version>
-			</dependency>
 			<dependency>
 				<groupId>org.testng</groupId>
 				<artifactId>testng</artifactId>

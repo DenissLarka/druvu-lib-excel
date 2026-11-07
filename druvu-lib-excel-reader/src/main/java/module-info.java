@@ -4,4 +4,6 @@
  */
 module com.druvu.excel.reader {
     requires org.dhatim.fastexcel.reader;
+
+    exports com.druvu.excel.reader;
 }
