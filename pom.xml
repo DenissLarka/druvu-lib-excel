@@ -65,8 +65,9 @@
 		<!-- Code quality plugin versions (same set as the other druvu libs) -->
 		<spotbugs-maven-plugin.version>4.10.5.0</spotbugs-maven-plugin.version>
 		<maven-pmd-plugin.version>3.28.0</maven-pmd-plugin.version>
-		<spotless-maven-plugin.version>3.11.0</spotless-maven-plugin.version>
-		<palantir-java-format.version>2.90.0</palantir-java-format.version>
+		<spotless-maven-plugin.version>3.12.0</spotless-maven-plugin.version>
+		<!-- the palantir-java-format fork that runs on JDK 27: https://github.com/openjavaformat/open-java-format -->
+		<open-java-format.version>21.0.2</open-java-format.version>
 	</properties>
 
 	<dependencyManagement>
@@ -230,7 +231,8 @@
 				<configuration>
 					<java>
 						<palantirJavaFormat>
-							<version>${palantir-java-format.version}</version>
+							<groupArtifact>dev.openjavaformat:open-java-format</groupArtifact>
+							<version>${open-java-format.version}</version>
 							<style>PALANTIR</style>
 							<formatJavadoc>true</formatJavadoc>
 						</palantirJavaFormat>
